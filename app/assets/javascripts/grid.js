@@ -1,10 +1,15 @@
 window.onload = function() {
 	var grid = document.getElementsByClassName('grid-container')[0];
 
-	grid.addEventListener('dragstart', function(e) {
+	grid.addEventListener('dragover', function(e) {
 		e.preventDefault();
-		debugger;
-		console.log(e.target.id);
+	});
+
+	grid.addEventListener("drop", function(e) {
+		console.log(e.target.dataset.squareState)
+		if (e.target.dataset.squareState === 0) {
+
+		}
 	});
 
 	grid.addEventListener('click', function(e) {
@@ -25,7 +30,9 @@ window.onload = function() {
 				cellToUpdate = document.querySelector("[data-square-index='" + cellId + "']");
 				if (data[cellId] === 1) {
 					cellToUpdate.className = cellToUpdate.className + " x"; 
+					cellToUpdate.setAttribute('draggable', true);
 				} else {
+					cellToUpdate.setAttribute('draggable', false);
 					cellToUpdate.className = 'cell'
 				}
 			}

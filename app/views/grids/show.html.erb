@@ -11,7 +11,8 @@
       <% if i % @grid.size == 0 && i > 0 %>
         <br>
       <% end %>
-      <div class="cell <% if @grid.squares[i] == 1 %>x<% end %>" data-square-index="<%= i %>" data-square-state="<%= @grid.squares[i] %>" draggable="true"></div>
+      <% x = @grid.squares[i] === 1 ? true : false %>
+      <div class="cell <% if x %>x<% end %>" data-square-index="<%= i %>" data-square-state="<%= @grid.squares[i] %>" draggable="<%= x %>"></div>
 
   <% end %>
 </div>
