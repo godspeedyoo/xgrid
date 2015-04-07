@@ -1,0 +1,12 @@
+<h1>Enter your grid dimensions</h1>
+<%= form_for @grid do |f| %>
+  <p>
+    <%= f.label :size %>
+    <%= f.number_field :size, value: params[:size] %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>

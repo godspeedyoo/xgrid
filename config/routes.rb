@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     resources :squares
   end
 
-  
+  get 'grids/create/:size' => 'grids#new'
+
   root 'welcome#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -12,7 +12,7 @@ class GridsController < ApplicationController
   end
 
   def create
-    dimension = params[:size]
+    dimension = params[:grid][:size].to_i
 
     @grid = Grid.find_or_create_by(grid_params)
 
