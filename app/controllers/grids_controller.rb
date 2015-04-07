@@ -19,7 +19,7 @@ class GridsController < ApplicationController
     respond_to do |f|
     #   f.html
     #   f.xml { render :xml => @grid }
-      f.json { render :json }
+      f.json { render :json => {:message => "Success"} }
     end
 
   end
