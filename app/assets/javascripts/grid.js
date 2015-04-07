@@ -17,7 +17,7 @@ window.onload = function() {
 
 		request.open('PUT', 'http://localhost:3000/grids/3', true);
 		request.withCredentials = true;
-		request.setRequestHeader('Content-Type','json');
+		request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 		request.send("cellId=" + cellId);
 	})
 }

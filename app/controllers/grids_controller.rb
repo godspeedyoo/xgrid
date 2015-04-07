@@ -15,10 +15,8 @@ class GridsController < ApplicationController
     p "------------------------------ UPDATE HIT"
     p params
     @grid = Grid.find(params[:id])
-
+    
     respond_to do |f|
-    #   f.html
-    #   f.xml { render :xml => @grid }
       f.json { render :json => {:message => "Success"} }
     end
 
