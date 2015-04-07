@@ -5,6 +5,17 @@ window.onload = function() {
 
 	console.log(grid);
 	grid.addEventListener('click', function(e) {
-		console.log(e.target.dataset.squareIndex);
+		var cellId = e.target.dataset.squareIndex;
+		var request = new XMLHttpRequest();
+		
+		request.onreadystatechange = function() {
+			if (request.readyState == 4 && request.status == 200) {
+				var data = JSON.parse(request.responseText);
+				console.log(data);
+			}
+		}
+
+		request.open('PUT', 'http://localhost:3000/grids/3', true);
+		request.send("cellId=" + cellId);
 	})
 }

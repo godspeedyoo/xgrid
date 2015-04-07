@@ -11,6 +11,20 @@ class GridsController < ApplicationController
     @grid = Grid.new
   end
 
+  def update
+    p "------------------------------ UPDATE HIT"
+    p params
+    @grid = Grid.find(params[:id])
+
+    respond_to do |f|
+    #   f.html
+    #   f.xml { render :xml => @grid }
+      f.json { render :json }
+    end
+
+  end
+
+
   def create
     dimension = params[:grid][:size].to_i
     

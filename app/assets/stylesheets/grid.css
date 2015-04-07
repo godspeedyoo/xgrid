@@ -16,8 +16,9 @@
 
 .x {
 	float: left;
-	padding: 0px;
-	margin: 0px;
+	margin-left: 30%;
+	margin-right: 30%;
+	margin-top: 10%;
 	font-size: 2em;
 	border: 0px;
 	display: inline-block;
