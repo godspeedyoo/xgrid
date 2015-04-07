@@ -4,7 +4,7 @@ class GridsController < ApplicationController
   end
 
   def show
-    @grid = Grid.find_by(size: params[:size])
+    @grid = Grid.find(params[:id])
   end
 
   def new
