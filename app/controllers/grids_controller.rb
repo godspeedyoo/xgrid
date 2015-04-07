@@ -12,7 +12,6 @@ class GridsController < ApplicationController
   end
 
   def update
-    p "------------------------------ UPDATE HIT"
     @grid = Grid.find(params[:id])
     cell_id = params[:cellId].to_i
     p squares = @grid.squares
