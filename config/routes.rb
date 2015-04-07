@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   get 'grids/create/:size' => 'grids#new'
+  get 'grids/data/:id' => 'grids#data'
 
   root 'welcome#index'
   # Example of regular route:

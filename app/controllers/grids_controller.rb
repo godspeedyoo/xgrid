@@ -11,10 +11,19 @@ class GridsController < ApplicationController
     @grid = Grid.new
   end
 
+  def data
+    @grid = Grid.find(params[:id])
+    squares = @grid.squares
+
+    respond_to do |f|
+      f.json { render :json => { data: squares.to_s } }
+    end
+  end
+
   def update
     @grid = Grid.find(params[:id])
     cell_id = params[:cellId].to_i
-    p squares = @grid.squares
+    squares = @grid.squares
     
     if squares[cell_id] == 0
       squares[cell_id] = 1
