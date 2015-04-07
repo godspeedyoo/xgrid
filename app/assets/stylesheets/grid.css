@@ -4,13 +4,23 @@
 */
 
 .cell {
-	margin-right: -4px;
-	margin-bottom: -4px;
+	margin-left: 0px;
+	margin-right: -5px;
+	margin-bottom: -5px;
 	display: inline-block;
-	box-sizing: border-box;
 	height: 50px;
 	width: 50px;
 	border: 1px solid black;
+
+}
+
+.x {
+	float: left;
+	padding: 0px;
+	margin: 0px;
+	font-size: 2em;
+	border: 0px;
+	display: inline-block;
 }
 
 @media (max-width: 800px) {
