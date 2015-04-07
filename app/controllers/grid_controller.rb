@@ -5,7 +5,15 @@ class GridController < ApplicationController
   end
 
   def create
+    dimension = params[:size]
+
     @grid = Grid.find_or_create_by(grid_params)
+
+    unless @grid.squares.size > 0
+      (dimension * dimension).times do
+        @grid.squares.create
+      end
+    end
 
     if @grid.save
       redirect_to @grid
