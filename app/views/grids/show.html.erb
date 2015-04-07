@@ -5,6 +5,13 @@
   <%= link_to 'Create Grid', new_grid_path %>
 <% end %>
 
-<table>
 
+<table>
+  <% @grid.size.times do %>
+    <tr>
+      <% @grid.size.times do %>
+        <td></td>
+      <% end %>
+    </tr>
+  <% end %>
 </table>
