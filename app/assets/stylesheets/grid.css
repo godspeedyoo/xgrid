@@ -3,16 +3,19 @@
   They will automatically be included in application.css.
 */
 
-
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
+.cell {
+	margin-right: -4px;
+	margin-bottom: -4px;
+	display: inline-block;
+	box-sizing: border-box;
+	height: 50px;
+	width: 50px;
+	border: 1px solid black;
 }
 
-tr {
-}
-
-td {
-	padding: 2em;
-	border: 2px solid black;
+@media (max-width: 800px) {
+	.cell {
+		height: 25px;
+		width: 25px;
+	}
 }

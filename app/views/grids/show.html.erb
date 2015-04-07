@@ -6,12 +6,14 @@
 <% end %>
 
 
-<table>
-  <% @grid.size.times do %>
-    <tr>
-      <% @grid.size.times do %>
-        <td></td>
+<div class="grid-container">
+  <% 0.upto (@grid.size * @grid.size)-1 do |i| %>
+
+      <% if i % @grid.size == 0 && i > 0 %>
+        <br>
       <% end %>
-    </tr>
+      <div class="cell" data-square-index="<%= i %>"></div>
+
   <% end %>
-</table>
+</div>
+
