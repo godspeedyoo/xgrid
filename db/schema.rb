@@ -11,21 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406232303) do
+ActiveRecord::Schema.define(version: 20150406232132) do
 
   create_table "grids", force: :cascade do |t|
     t.integer  "size"
+    t.string   "squares"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "squares", force: :cascade do |t|
-    t.boolean  "tapped",     default: false
-    t.integer  "grid_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-  end
-
-  add_index "squares", ["grid_id"], name: "index_squares_on_grid_id"
 
 end

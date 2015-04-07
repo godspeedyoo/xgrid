@@ -1,3 +1,4 @@
 class Grid < ActiveRecord::Base
-  has_many :squares
+  serialize :squares, Hash
+
 end

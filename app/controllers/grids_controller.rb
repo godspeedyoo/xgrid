@@ -13,14 +13,8 @@ class GridsController < ApplicationController
 
   def create
     dimension = params[:grid][:size].to_i
-
+    
     @grid = Grid.find_or_create_by(grid_params)
-
-    unless @grid.squares.size > 0
-      (dimension * dimension).times do
-        @grid.squares.create
-      end
-    end
 
     if @grid.save
       redirect_to @grid
@@ -33,7 +27,7 @@ class GridsController < ApplicationController
   private
 
   def grid_params
-    params.require(:grid).permit(:size)
+    params.require(:grid).permit(:size, :squares)
   end
 
 end

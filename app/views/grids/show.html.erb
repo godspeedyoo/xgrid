@@ -1,6 +1,10 @@
 <% if @grid %>
-<h1><%= @grid.size %> x <%= @grid.size %></h1>
+  <h1><%= @grid.size %> x <%= @grid.size %></h1>
 <% else %>
-<h1>No grid exists for given dimensions. Click to create</h1>
-<%= link_to 'Create Grid', new_grid_path %>
+  <h1>No grid exists for given dimensions. Click to create</h1>
+  <%= link_to 'Create Grid', new_grid_path %>
 <% end %>
+
+<table>
+
+</table>

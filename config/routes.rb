@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   
   resources :grids do
-    resources :squares
   end
 
   get 'grids/create/:size' => 'grids#new'
