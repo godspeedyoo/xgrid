@@ -1,7 +1,14 @@
-class GridController < ApplicationController
+class GridsController < ApplicationController
+  def index
+    @grids = Grid.all
+  end
 
   def show
     @grid = Grid.find(params[:size])
+  end
+
+  def new
+    @grid = Grid.new
   end
 
   def create
