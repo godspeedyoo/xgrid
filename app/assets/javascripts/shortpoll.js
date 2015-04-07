@@ -4,7 +4,7 @@
 	var gridId = parseInt(current_url[current_url.length - 1]);
 
   var POLL_URL = 'http://localhost:3000/grids/data/',
-      POLL_FREQUENCY = 2000;  // every second
+      POLL_FREQUENCY = 1000;  // every second
 
 	function getSquaresData(gridId) {
 		var request = new XMLHttpRequest();

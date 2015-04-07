@@ -31,8 +31,8 @@ window.onload = function() {
 				// returns data in format of Object {data: {array}, cellId: int}
 				console.log(request.responseText);
 				var data = JSON.parse(JSON.parse(request.responseText)['data']);
-
-				cellToUpdate = document.querySelector("[data-square-index='" + cellId + "']");
+				var	cellToUpdate = document.querySelector("[data-square-index='" + cellId + "']");
+				
 				if (cellToUpdate != null) {
 					if (data[cellId] === 1) {
 						cellToUpdate.className = cellToUpdate.className + " x"; 
