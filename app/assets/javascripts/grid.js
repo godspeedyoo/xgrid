@@ -19,6 +19,10 @@ window.onload = function() {
 		console.log(cellId);
 
 		var gridId = parseInt(document.getElementsByClassName('grid-container')[0].id);
+		toggleX(cellId, gridId);
+	});
+
+	function toggleX(cellId, gridId) {
 		var request = new XMLHttpRequest();
 		
 		request.onreadystatechange = function() {
@@ -28,12 +32,14 @@ window.onload = function() {
 				var data = JSON.parse(JSON.parse(request.responseText)['data']);
 
 				cellToUpdate = document.querySelector("[data-square-index='" + cellId + "']");
-				if (data[cellId] === 1) {
-					cellToUpdate.className = cellToUpdate.className + " x"; 
-					cellToUpdate.setAttribute('draggable', true);
-				} else {
-					cellToUpdate.setAttribute('draggable', false);
-					cellToUpdate.className = 'cell'
+				if (cellToUpdate != null) {
+					if (data[cellId] === 1) {
+						cellToUpdate.className = cellToUpdate.className + " x"; 
+						cellToUpdate.setAttribute('draggable', true);
+					} else {
+						cellToUpdate.className = 'cell'
+						cellToUpdate.setAttribute('draggable', false);
+					}
 				}
 			}
 		}
@@ -42,5 +48,6 @@ window.onload = function() {
 		request.withCredentials = true;
 		request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
 		request.send("cellId=" + cellId);
-	})
+	}
+
 }
