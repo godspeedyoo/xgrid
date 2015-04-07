@@ -1,14 +1,18 @@
 window.onload = function() {
 	var grid = document.getElementsByClassName('grid-container')[0];
+	var gridId = parseInt(document.getElementsByClassName('grid-container')[0].id);
 
 	grid.addEventListener('dragover', function(e) {
 		e.preventDefault();
 	});
 
 	grid.addEventListener("drop", function(e) {
-		console.log(e.target.dataset.squareState)
-		if (e.target.dataset.squareState === 0) {
-
+		e.preventDefault();
+		console.log(e.target.dataset.squareState);
+		console.log(e.target.dataset.squareState == 0);
+		if (e.target.dataset.squareState == 0) {
+			cellId = e.target.dataset.squareIndex;
+			toggleX(cellId, gridId);
 		}
 	});
 
@@ -16,9 +20,6 @@ window.onload = function() {
 		e.preventDefault();
 		var cellId = e.target.dataset.squareIndex || e.target.parentElement.dataset.squareIndex;
 		cellId = parseInt(cellId);
-		console.log(cellId);
-
-		var gridId = parseInt(document.getElementsByClassName('grid-container')[0].id);
 		toggleX(cellId, gridId);
 	});
 
@@ -35,9 +36,11 @@ window.onload = function() {
 				if (cellToUpdate != null) {
 					if (data[cellId] === 1) {
 						cellToUpdate.className = cellToUpdate.className + " x"; 
+						cellToUpdate.dataset.squareState = 1;
 						cellToUpdate.setAttribute('draggable', true);
 					} else {
 						cellToUpdate.className = 'cell'
+						cellToUpdate.dataset.squareState = 0;
 						cellToUpdate.setAttribute('draggable', false);
 					}
 				}
