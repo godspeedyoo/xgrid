@@ -15,7 +15,7 @@ class GridsController < ApplicationController
     p "------------------------------ UPDATE HIT"
     @grid = Grid.find(params[:id])
     cell_id = params[:cellId].to_i
-    squares = @grid.squares
+    p squares = @grid.squares
     
     if squares[cell_id] == 0
       squares[cell_id] = 1
@@ -33,8 +33,6 @@ class GridsController < ApplicationController
 
 
   def create
-    dimension = params[:grid][:size].to_i
-    
     @grid = Grid.find_or_create_by(grid_params)
 
     if @grid.save
@@ -48,7 +46,7 @@ class GridsController < ApplicationController
   private
 
   def grid_params
-    params.require(:grid).permit(:size, :squares)
+    params.require(:grid).permit(:size)
   end
 
 end

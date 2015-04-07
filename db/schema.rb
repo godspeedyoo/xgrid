@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20150406232132) do
 
   create_table "grids", force: :cascade do |t|
     t.integer  "size"
-    t.string   "squares"
+    t.text     "squares"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

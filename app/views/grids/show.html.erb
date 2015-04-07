@@ -5,7 +5,7 @@
   <%= link_to 'Create Grid', new_grid_path %>
 <% end %>
 
-<div class="grid-container">
+<div class="grid-container" id="<%= @grid.id %>">
   <% 0.upto (@grid.size * @grid.size)-1 do |i| %>
 
       <% if i % @grid.size == 0 && i > 0 %>
