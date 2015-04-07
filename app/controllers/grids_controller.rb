@@ -13,9 +13,20 @@ class GridsController < ApplicationController
 
   def update
     p "------------------------------ UPDATE HIT"
-    p params
+    # puts "BEFORE: " + @grid.squares
     @grid = Grid.find(params[:id])
+    cell_id = params[:cellId].to_i
+    squares = @grid.squares
     
+    if squares[cell_id] == 0
+      squares[cell_id] = 1
+    else
+      squares[cell_id] = 0
+    end
+    
+    @grid.update_column(:squares, squares)
+    # puts "AFTER: " + @grid.squares
+
     respond_to do |f|
       f.json { render :json => {:message => "Success"} }
     end
