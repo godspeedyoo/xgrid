@@ -6,13 +6,27 @@ window.onload = function() {
 	console.log(grid);
 	grid.addEventListener('click', function(e) {
 		var cellId = e.target.dataset.squareIndex || e.target.parentElement.dataset.squareIndex;
-		console.log(cellId);
+				// debugger;
 		var request = new XMLHttpRequest();
 		
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
-				var data = JSON.parse(request.responseText);
-				console.log(data);
+				// returns data in format of Object {data: {array}, cellId: int}
+				var data = JSON.parse(JSON.parse(request.responseText)['data']);
+				console.log(data[cellId]);
+				// console.log(JSON.parse(data['data']));
+				// console.log(data['data']);
+				// console.log(data['data'][cellId]);
+
+				cellToUpdate = document.querySelector("[data-square-index='" + cellId + "']");
+				if (data[cellId] === 1) {
+					cellToUpdate.className = cellToUpdate.className + " x"; 
+				} else {
+					cellToUpdate.className = 'cell'
+				}
+
+				// console.log(cellToUpdate);
+
 			}
 		}
 

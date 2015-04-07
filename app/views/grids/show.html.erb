@@ -5,14 +5,13 @@
   <%= link_to 'Create Grid', new_grid_path %>
 <% end %>
 
-<%= @grid.squares %>
 <div class="grid-container">
   <% 0.upto (@grid.size * @grid.size)-1 do |i| %>
 
       <% if i % @grid.size == 0 && i > 0 %>
         <br>
       <% end %>
-      <div class="cell" data-square-index="<%= i %>"><% if @grid.squares[i] == 1 %><span class="x">X</span><% end %></div>
+      <div class="cell <% if @grid.squares[i] == 1 %>x<% end %>" data-square-index="<%= i %>"></div>
 
   <% end %>
 </div>
