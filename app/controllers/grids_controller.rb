@@ -13,7 +13,6 @@ class GridsController < ApplicationController
 
   def update
     p "------------------------------ UPDATE HIT"
-    # puts "BEFORE: " + @grid.squares
     @grid = Grid.find(params[:id])
     cell_id = params[:cellId].to_i
     squares = @grid.squares
@@ -25,10 +24,9 @@ class GridsController < ApplicationController
     end
     
     @grid.update_column(:squares, squares)
-    # puts "AFTER: " + @grid.squares
 
     respond_to do |f|
-      f.json { render :json => {:message => "Success"} }
+      f.json { render :json => { data: squares.to_s, cellId: cell_id.to_s } }
     end
 
   end

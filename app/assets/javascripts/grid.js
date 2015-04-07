@@ -5,7 +5,8 @@ window.onload = function() {
 
 	console.log(grid);
 	grid.addEventListener('click', function(e) {
-		var cellId = e.target.dataset.squareIndex;
+		var cellId = e.target.dataset.squareIndex || e.target.parentElement.dataset.squareIndex;
+		console.log(cellId);
 		var request = new XMLHttpRequest();
 		
 		request.onreadystatechange = function() {
