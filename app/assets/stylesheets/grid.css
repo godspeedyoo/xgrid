@@ -3,6 +3,10 @@
   They will automatically be included in application.css.
 */
 
+.grid-container {
+	width: 50%;
+}
+
 .cell {
 	margin-left: 0px;
 	margin-right: -5px;

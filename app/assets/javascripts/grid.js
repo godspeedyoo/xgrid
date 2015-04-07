@@ -1,8 +1,14 @@
 window.onload = function() {
 	var grid = document.getElementsByClassName('grid-container')[0];
 
-	console.log(grid);
+	grid.addEventListener('dragstart', function(e) {
+		e.preventDefault();
+		debugger;
+		console.log(e.target.id);
+	});
+
 	grid.addEventListener('click', function(e) {
+		e.preventDefault();
 		var cellId = e.target.dataset.squareIndex || e.target.parentElement.dataset.squareIndex;
 		cellId = parseInt(cellId);
 		console.log(cellId);
