@@ -8,7 +8,6 @@ window.onload = function() {
 
 	grid.addEventListener("drop", function(e) {
 		e.preventDefault();
-		console.log(e.target.dataset.squareState);
 		console.log(e.target.dataset.squareState == 0);
 		if (e.target.dataset.squareState == 0) {
 			cellId = e.target.dataset.squareIndex;
@@ -18,7 +17,8 @@ window.onload = function() {
 
 	grid.addEventListener('click', function(e) {
 		e.preventDefault();
-		var cellId = e.target.dataset.squareIndex || e.target.parentElement.dataset.squareIndex;
+		var cellId = e.target.dataset.squareIndex
+		if (cellId == undefined) { return false };
 		cellId = parseInt(cellId);
 		toggleX(cellId, gridId);
 	});
@@ -29,10 +29,9 @@ window.onload = function() {
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
 				// returns data in format of Object {data: {array}, cellId: int}
-				console.log(request.responseText);
 				var data = JSON.parse(JSON.parse(request.responseText)['data']);
 				var	cellToUpdate = document.querySelector("[data-square-index='" + cellId + "']");
-				
+
 				if (cellToUpdate != null) {
 					if (data[cellId] === 1) {
 						cellToUpdate.className = cellToUpdate.className + " x"; 

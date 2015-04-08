@@ -25,25 +25,28 @@
 	setInterval(function() { getSquaresData(gridId) }, POLL_FREQUENCY); 
 
 	function updateCells(data) {
-		console.log(data);
+		// console.log(data);
 		for (var i = 0; i < data.length; i++) {
 			var currentCell = document.querySelector("[data-square-index='" + i + "']");
 			var squareStateOfDOM = currentCell.dataset.squareState;
 
 			if (data[i] != squareStateOfDOM) {
-				console.log("attempting change");
+				// console.log("attempting change");
 				updateCell(currentCell, data[i]);
 			} 
 		}
 	}
 
 	function updateCell(cell, squareState) {
+		console.log(cell);
+		console.log(squareState);
+
 		if (cell != null) {
 			if (squareState == 1) {
 				cell.className = cell.className + " x"; 
 				cell.dataset.squareState = 1;
 				cell.setAttribute('draggable', true);
-			} else {
+			} else if (cell != null){
 				cell.className = 'cell'
 				cell.dataset.squareState = 0;
 				cell.setAttribute('draggable', false);

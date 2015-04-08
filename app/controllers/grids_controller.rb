@@ -1,4 +1,6 @@
 class GridsController < ApplicationController
+  include GridHelper
+
   def index
     @grids = Grid.all
   end
@@ -24,13 +26,9 @@ class GridsController < ApplicationController
     @grid = Grid.find(params[:id])
     cell_id = params[:cellId].to_i
     squares = @grid.squares
-    
-    if squares[cell_id] == 0
-      squares[cell_id] = 1
-    else
-      squares[cell_id] = 0
-    end
-    
+    puts "*" * 50
+    p squares[cell_id] = toggle_square(squares[cell_id])
+
     @grid.update_column(:squares, squares)
 
     respond_to do |f|
