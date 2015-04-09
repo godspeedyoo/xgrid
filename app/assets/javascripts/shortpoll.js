@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-	console.log('Document ready');
+
+	var grid = document.getElementsByClassName('grid-container')[0];
+	var gridId = parseInt(document.getElementsByClassName('grid-container')[0].id);
+  var POLL_URL = 'http://localhost:3000/grids/data/',
+      POLL_FREQUENCY = 2000;  // every second
 
 	function getSquaresData(gridId) {
 		console.log("polling...");
@@ -20,25 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-	// grabbing grid ID from URL to avoid waiting on DOM load
-	var current_url = window.location.href.split('/');
-	var gridId = parseInt(current_url[current_url.length - 1]);
-
-  var POLL_URL = 'http://localhost:3000/grids/data/',
-      POLL_FREQUENCY = 2000;  // every second
-
-
-	setInterval( function() { getSquaresData(gridId) }, POLL_FREQUENCY); 
-		
-
 	function updateCells(data) {
-		// console.log(data);
 		for (var i = 0; i < data.length; i++) {
 			var currentCell = document.querySelector("[data-square-index='" + i + "']");
 			var squareStateOfDOM = currentCell.dataset.squareState;
 
 			if (data[i] != squareStateOfDOM) {
-				// console.log("attempting change");
 				updateCell(currentCell, data[i]);
 			} 
 		}
@@ -61,6 +52,5 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-
-
+	setInterval( function() { getSquaresData(gridId) }, POLL_FREQUENCY); 
 });
