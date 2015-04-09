@@ -18,6 +18,6 @@ use Rack::Cors do
 
   allow do
     origins '*'
-    resource '/grids/data/*', :headers => :any, :methods => :get
+    resource '/grids/data/*', :headers => :any, :methods => [:get, :put]
   end
 end
