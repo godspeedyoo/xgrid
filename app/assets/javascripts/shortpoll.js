@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		request.open('GET', POLL_URL + grid.id, true);
 		request.withCredentials = true;
 		request.setRequestHeader('Content-Type',
-														 'application/x-www-form-urlencoded');
+														 'application/json');
 		request.send();
 	}
 
