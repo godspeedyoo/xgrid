@@ -26,8 +26,7 @@ class GridsController < ApplicationController
     @grid = Grid.find(params[:id])
     cell_id = params[:cellId].to_i
     squares = @grid.squares
-    puts "*" * 50
-    p squares[cell_id] = toggle_square(squares[cell_id])
+    squares[cell_id] = toggle_square(squares[cell_id])
 
     @grid.update_column(:squares, squares)
 

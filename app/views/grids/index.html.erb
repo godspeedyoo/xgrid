@@ -3,6 +3,9 @@
 
 <table>
   <% @grids.each do |grid| %>
-    <tr><%= grid.size %></tr>
+    <tr>
+      <td><%= link_to 'Grid', grid_path(grid) %></td>
+      <td><%= grid.size %> X <%= grid.size %></td>
+    </tr>
   <% end %>
 </table>

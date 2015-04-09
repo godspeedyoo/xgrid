@@ -1,12 +1,8 @@
-(function(document) {
-	// grabbing grid ID from URL to avoid waiting on DOM load
-	var current_url = window.location.href.split('/');
-	var gridId = parseInt(current_url[current_url.length - 1]);
-
-  var POLL_URL = 'http://localhost:3000/grids/data/',
-      POLL_FREQUENCY = 1000;  // every second
+document.addEventListener('DOMContentLoaded', function() {
+	console.log('Document ready');
 
 	function getSquaresData(gridId) {
+		console.log("polling...");
 		var request = new XMLHttpRequest();
 
 		request.onreadystatechange = function() {
@@ -16,13 +12,24 @@
 			}
 		}
 
-		request.open('GET', POLL_URL + gridId, true);
-		request.withCredentials = true;
-		request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-		request.send();
+		if (gridId != NaN) {
+			request.open('GET', POLL_URL + gridId, true);
+			request.withCredentials = true;
+			request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+			request.send();
+		}
 	}
 
-	setInterval(function() { getSquaresData(gridId) }, POLL_FREQUENCY); 
+	// grabbing grid ID from URL to avoid waiting on DOM load
+	var current_url = window.location.href.split('/');
+	var gridId = parseInt(current_url[current_url.length - 1]);
+
+  var POLL_URL = 'http://localhost:3000/grids/data/',
+      POLL_FREQUENCY = 2000;  // every second
+
+
+	setInterval( function() { getSquaresData(gridId) }, POLL_FREQUENCY); 
+		
 
 	function updateCells(data) {
 		// console.log(data);
@@ -56,4 +63,4 @@
 
 
 
-}(document));
+});
