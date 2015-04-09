@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
 	var grid = document.getElementsByClassName('grid-container')[0];
-	var POLL_URL = 'http://xgrid.herokuapp.com/grids/data/',
+	var POLL_URL = 'https://xgrid.herokuapp.com/grids/data/',
       POLL_FREQUENCY = 1000;  // every second
 
   // AJAX call to obtain array of binary ints representing empty cell or 'x'

@@ -1,6 +1,6 @@
 window.onload = function() {
 	var grid = document.getElementsByClassName('grid-container')[0];
-	var updateURL = 'http://xgrid.herouapp.com/grids/';
+	var updateURL = 'https://xgrid.herouapp.com/grids/';
 	var touchMove = false; // store state of touchmove action for mobile
 
 	grid.addEventListener('dragover', function(e) {
