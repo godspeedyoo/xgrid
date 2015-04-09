@@ -31,7 +31,7 @@ class GridsController < ApplicationController
     @grid.update_column(:squares, squares)
 
     respond_to do |f|
-      f.json { render :json => { data: squares.to_s, cellId: cell_id.to_s } }
+      f.json { render :json => { data: squares } }
     end
 
   end

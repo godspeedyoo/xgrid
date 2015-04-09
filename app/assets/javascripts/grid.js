@@ -1,6 +1,5 @@
 window.onload = function() {
 	var grid = document.getElementsByClassName('grid-container')[0];
-	var gridId = parseInt(document.getElementsByClassName('grid-container')[0].id);
 	var updateURL = 'http://localhost:3000/grids/';
 
 	grid.addEventListener('dragover', function(e) {
@@ -9,28 +8,25 @@ window.onload = function() {
 
 	grid.addEventListener("drop", function(e) {
 		e.preventDefault();
-		getCellId(e);
+		var	cellId = getCellId(e);
 		if (e.target.dataset.squareState == 0) {
-			toggleX(cellId, gridId); // toggle the dropped cell only if it is unmarked
+			toggleX(cellId); // toggle the dropped cell only if it is unmarked
 		}
 	});
 
 	grid.addEventListener('click', function(e) {
 		e.preventDefault();
-		getCellId(e);
-		if (cellId == undefined) { return false }; // handle error for clicking on non cell - or remove and add event listener to cells directly
-		toggleX(cellId, gridId);
+		var	cellId = getCellId(e);
+		if (cellId == undefined) { return; } // handle error for clicking on non cell - or remove and add event listener to cells directly
+		toggleX(cellId);
 	});
 
 	function getCellId(e) {
-		return cellId = e.target.dataset.squareIndex 
+		return e.target.dataset.squareIndex;
 	};
 
 	function getCellObject(cellId) {
-		return cellToUpdate = document.querySelector(
-								"[data-square-index='" 
-								+ cellId 
-								+ "']");
+		return document.querySelector("[data-square-index='" + cellId + "']");
 	};
 
 	function markCell(cell) {
@@ -45,15 +41,15 @@ window.onload = function() {
 		cell.setAttribute('draggable', false);
 	};
 
-	function toggleX(cellId, gridId) {
+	function toggleX(cellId) {
 		var request = new XMLHttpRequest();
 		
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
-				// returns data in format of Object {data: {array}, cellId: int}
-				var data = JSON.parse(JSON.parse(request.responseText)['data']);
-				
-				getCellObject(cellId);
+				// returns data in format of Object {data: [number]}
+
+				var data = JSON.parse(request.responseText).data;
+				var cellToUpdate = getCellObject(cellId);
 
 				if (cellToUpdate != null) {
 					if (data[cellId] === 1) {
@@ -65,7 +61,7 @@ window.onload = function() {
 			}
 		};
 
-		request.open('PUT', updateURL + gridId, true);
+		request.open('PUT', updateURL + grid.id, true);
 		request.withCredentials = true;
 		request.setRequestHeader('Content-Type',
 													   'application/x-www-form-urlencoded');

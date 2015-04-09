@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
 	var grid = document.getElementsByClassName('grid-container')[0];
+	// Same commet as in 'grid.js' You already have a reference
+	// to this element. Why not use it? 
 	var gridId = parseInt(document.getElementsByClassName('grid-container')[0].id);
 	var POLL_URL = 'http://localhost:3000/grids/data/',
       POLL_FREQUENCY = 1000;  // every second
@@ -13,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
+				// Fix this doulbe-parsing...
 				var data = JSON.parse(JSON.parse(request.responseText)['data']);
 				updateCells(data);
 			}
@@ -47,6 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			}
 		}
 	}
+
+
+	// Why are you sending in squareState here? They're not used. 
+	// Also, I'd make these functions shared somehow. 
+	// In larger projects you'd encounter problems if they ever
+	// get out of sync. Make them global?
 
 	// markCell() and unmarkCell() functions are duplicated in grid.js - modularize if further functions need to be shared
 	function markCell(cell, squareState) { 
