@@ -8,7 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Xgrid
   class Application < Rails::Application
-    config.middleware.inser_before 0, "Rack::Cors" do
+    config.middleware.insert_before 0, "Rack::Cors" do
       allow do
         origins '*'
         resource '*', :headers => :any, :methods => [:get, :post, :put]
