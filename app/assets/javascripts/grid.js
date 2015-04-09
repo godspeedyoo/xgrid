@@ -43,7 +43,6 @@ window.onload = function() {
 		// emulate what would happen on a complete click action by toggling cell
 		if (sourceCellIndex == targetCellIndex && touchMove == false) {
 			if (sourceCellIndex == undefined) { return; } // handle error for click on non cell
-			alert(sourceCellIndex);
 			toggleX(sourceCellIndex);
 			return;
 		}
