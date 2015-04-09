@@ -5,10 +5,6 @@ class ApplicationController < ActionController::Base
   after_filter :set_cors
   skip_before_filter :verify_authenticity_token, :only => [:update]
 
-  config.action_dispatch.default_headers = {
-    'Access-Control-Allow-Origin' => '*',
-    'Access-Control-Request-Method' => %w{GET POST PUT OPTIONS}.join(',')
-  }
 
   def set_cors
     headers['Access-Control-Allow-Origin'] = '*'
