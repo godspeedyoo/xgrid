@@ -1,52 +1,66 @@
 window.onload = function() {
 	var grid = document.getElementsByClassName('grid-container')[0];
 	var updateURL = 'http://localhost:3000/grids/';
+	var touchMove = false; // store state of touchmove action for mobile
 
 	grid.addEventListener('dragover', function(e) {
 		e.preventDefault();
 	});
 
-	grid.addEventListener('touchmove', function(e) {
-		e.preventDefault();
-	});
-
 	grid.addEventListener("drop", function(e) {
 		e.preventDefault();
-		var	cellIndex = getCellIndex(e);
+		var	cellIndex = getCellIndex(e.target);
 		if (e.target.dataset.squareState == 0) {
 			toggleX(cellIndex); // toggle the dropped cell only if it is unmarked
 		}
 	});
 
+	grid.addEventListener('click', function(e) {
+		e.preventDefault();
+		var	cellIndex = getcellIndex(e.target);
+		if (cellIndex == undefined) { return; } // handle error for clicking on non cell - or remove and add event listener to cells directly
+		toggleX(cellIndex);
+	});
+
+	// mobile
+	grid.addEventListener('touchmove', function(e) {
+		e.preventDefault();
+		touchMove = true;
+		console.log(touchMove);
+	});
+
+	// handles both click and drag events for mobile
 	grid.addEventListener("touchend", function(e) {
 		e.preventDefault();
-		var changedTouch = e.changedTouches[0];
-		var	sourceCellIndex = getcellIndex(e);
-		var sourceCellState = e.target.dataset.squareState;
+		console.log(touchMove);
 
+		var	sourceCellIndex = getCellIndex(e.target);
+		var sourceCellState = getCellState(e.target);
+
+		var changedTouch = e.changedTouches[0];
 		var targetCell = document.elementFromPoint(changedTouch.clientX, changedTouch.clientY); 
-		var targetCellIndex = targetCell.dataset.squareIndex;
-		var targetCellState = targetCell.dataset.squareState;
+		var targetCellIndex = getCellIndex(targetCell);
+		var targetCellState = getCellState(targetCell);
 
 		// emulate what would happen on a complete click action by toggling cell
-		if (sourceCellIndex == targetCellIndex) {
+		if (sourceCellIndex == targetCellIndex && touchMove == false) {
 			toggleX(sourceCellIndex);
+			return;
 		}
 	 	// toggle the dropped cell only if source is marked and target is unmarked
 		if (targetCellState == 0 && sourceCellState == 1) {
 			toggleX(targetCellIndex);
 		}
+		touchMove = false; // reset moving state
 	});
 
-	grid.addEventListener('click', function(e) {
-		e.preventDefault();
-		var	cellIndex = getcellIndex(e);
-		if (cellIndex == undefined) { return; } // handle error for clicking on non cell - or remove and add event listener to cells directly
-		toggleX(cellIndex);
-	});
+	function getCellState(element) {
+		return element.dataset.squareState;
+	}
 
-	function getcellIndex(e) {
-		return e.target.dataset.squareIndex;
+
+	function getCellIndex(element) {
+		return element.dataset.squareIndex;
 	};
 
 	function getCellObject(cellIndex) {
