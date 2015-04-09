@@ -17,6 +17,6 @@ Requirements:
 
 2. Tapping on an empty grid square adds an 'x' to it. Tapping once more removes the 'x'.
 
-3. Make x's draggable from their grid square to any other grid squares within the grid. If an x is drag­and­dropped to a grid square already containing an x, the drag­and­drop action is cancelled
+3. Make x's draggable from their grid square to any other grid squares within the grid. If an x is drag and dropped to a grid square already containing an x, the drag­and­drop action is cancelled
 
 4. Make the positions of all x’s sync in other browsers/tabs with the same URL from Step 1. No restrictions on the backend platform.
