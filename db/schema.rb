@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150406232132) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "grids", force: :cascade do |t|
     t.integer  "size"
     t.text     "squares"

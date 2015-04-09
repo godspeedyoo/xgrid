@@ -17,7 +17,7 @@ window.onload = function() {
 
 	grid.addEventListener('click', function(e) {
 		e.preventDefault();
-		var	cellIndex = getcellIndex(e.target);
+		var	cellIndex = getCellIndex(e.target);
 		if (cellIndex == undefined) { return; } // handle error for clicking on non cell - or remove and add event listener to cells directly
 		toggleX(cellIndex);
 	});
