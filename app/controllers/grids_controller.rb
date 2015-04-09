@@ -47,7 +47,6 @@ class GridsController < ApplicationController
     end
   end
 
-
   private
 
   def grid_params
