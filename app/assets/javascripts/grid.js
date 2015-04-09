@@ -28,6 +28,10 @@ window.onload = function() {
 		var targetCellIndex = targetCell.dataset.squareIndex;
 		var targetCellState = targetCell.dataset.squareState;
 
+		// emulate what would happen on a complete click action by toggling cell
+		if (sourceCellIndex == targetCellIndex) {
+			toggleX(sourceCellIndex);
+		}
 	 	// toggle the dropped cell only if source is marked and target is unmarked
 		if (targetCellState == 0 && sourceCellState == 1) {
 			toggleX(targetCellIndex);
