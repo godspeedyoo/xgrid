@@ -40,31 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	function updateCell(cell, squareState) {
 		if (cell != null) {
 			if (squareState == 1) {
-				markCell(cell, squareState)
+				CellModule.markCell(cell, squareState)
 			} else if (cell != null){
-				unmarkCell(cell, squareState)
+				CellModule.unmarkCell(cell, squareState)
 			}
 		}
 	}
 
-
-	// Why are you sending in squareState here? They're not used. 
-	// Also, I'd make these functions shared somehow. 
-	// In larger projects you'd encounter problems if they ever
-	// get out of sync. Make them global?
-
-	// markCell() and unmarkCell() functions are duplicated in grid.js - modularize if further functions need to be shared
-	function markCell(cell) { 
-		cell.className = cell.className + " x"; // apply the css styling for 'marked' cells
-		cell.dataset.squareState = 1;	// set the state of the square to be 'marked'
-		cell.setAttribute('draggable', true); // allow 'marked' cells to be draggable
-	}
-
-	function unmarkCell(cell) {
-		cell.className = 'cell'
-		cell.dataset.squareState = 0;
-		cell.setAttribute('draggable', false);
-	}
 
 	setInterval( function() { getSquaresData(grid) }, POLL_FREQUENCY); // poll and update DOM as necessary
 });

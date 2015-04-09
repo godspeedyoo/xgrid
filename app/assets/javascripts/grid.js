@@ -29,18 +29,6 @@ window.onload = function() {
 		return document.querySelector("[data-square-index='" + cellId + "']");
 	};
 
-	function markCell(cell) {
-		cell.className = cell.className + " x"; 
-		cell.dataset.squareState = 1;
-		cell.setAttribute('draggable', true);
-	};
-
-	function unmarkCell(cell) {
-		cell.className = 'cell'
-		cell.dataset.squareState = 0;
-		cell.setAttribute('draggable', false);
-	};
-
 	function toggleX(cellId) {
 		var request = new XMLHttpRequest();
 		
@@ -53,9 +41,9 @@ window.onload = function() {
 
 				if (cellToUpdate != null) {
 					if (data[cellId] === 1) {
-						markCell(cellToUpdate);
+						CellModule.markCell(cellToUpdate);
 					} else {
-						unmarkCell(cellToUpdate);
+						CellModule.unmarkCell(cellToUpdate);
 					}
 				}
 			}
