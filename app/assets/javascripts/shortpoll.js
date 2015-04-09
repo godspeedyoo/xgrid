@@ -48,7 +48,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	}
 
-	function markCell(cell, squareState) {
+	// markCell() and unmarkCell() functions are duplicated in grid.js - modularize if further functions need to be shared
+	function markCell(cell, squareState) { 
 		cell.className = cell.className + " x"; // apply the css styling for 'marked' cells
 		cell.dataset.squareState = 1;	// set the state of the square to be 'marked'
 		cell.setAttribute('draggable', true); // allow 'marked' cells to be draggable

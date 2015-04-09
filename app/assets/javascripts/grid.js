@@ -1,6 +1,7 @@
 window.onload = function() {
 	var grid = document.getElementsByClassName('grid-container')[0];
 	var gridId = parseInt(document.getElementsByClassName('grid-container')[0].id);
+	var updateURL = 'http://localhost:3000/grids/';
 
 	grid.addEventListener('dragover', function(e) {
 		e.preventDefault();
@@ -17,12 +18,32 @@ window.onload = function() {
 	grid.addEventListener('click', function(e) {
 		e.preventDefault();
 		getCellId(e);
+		if (cellId == undefined) { return false }; // handle error for clicking on non cell - or remove and add event listener to cells directly
 		toggleX(cellId, gridId);
 	});
 
 	function getCellId(e) {
 		return cellId = e.target.dataset.squareIndex 
-	}
+	};
+
+	function getCellObject(cellId) {
+		return cellToUpdate = document.querySelector(
+								"[data-square-index='" 
+								+ cellId 
+								+ "']");
+	};
+
+	function markCell(cell) {
+		cell.className = cell.className + " x"; 
+		cell.dataset.squareState = 1;
+		cell.setAttribute('draggable', true);
+	};
+
+	function unmarkCell(cell) {
+		cell.className = 'cell'
+		cell.dataset.squareState = 0;
+		cell.setAttribute('draggable', false);
+	};
 
 	function toggleX(cellId, gridId) {
 		var request = new XMLHttpRequest();
@@ -31,26 +52,23 @@ window.onload = function() {
 			if (request.readyState == 4 && request.status == 200) {
 				// returns data in format of Object {data: {array}, cellId: int}
 				var data = JSON.parse(JSON.parse(request.responseText)['data']);
-				var	cellToUpdate = document.querySelector("[data-square-index='" + cellId + "']");
+				
+				getCellObject(cellId);
 
 				if (cellToUpdate != null) {
 					if (data[cellId] === 1) {
-						cellToUpdate.className = cellToUpdate.className + " x"; 
-						cellToUpdate.dataset.squareState = 1;
-						cellToUpdate.setAttribute('draggable', true);
+						markCell(cellToUpdate);
 					} else {
-						cellToUpdate.className = 'cell'
-						cellToUpdate.dataset.squareState = 0;
-						cellToUpdate.setAttribute('draggable', false);
+						unmarkCell(cellToUpdate);
 					}
 				}
 			}
-		}
+		};
 
-		request.open('PUT', 'http://localhost:3000/grids/' + gridId, true);
+		request.open('PUT', updateURL + gridId, true);
 		request.withCredentials = true;
-		request.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+		request.setRequestHeader('Content-Type',
+													   'application/x-www-form-urlencoded');
 		request.send("cellId=" + cellId);
-	}
-
+	};
 }
