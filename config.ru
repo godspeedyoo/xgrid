@@ -8,7 +8,7 @@ use Rack::Cors do
 		origins 'localhost:3000', 'xgrid.herokuapp.com'
     resource '/grids/data/*', 
       :headers => :any,
-      :methods => [:get, :post, :put, :options]
+      :methods => [:get, :post, :put, :options],
       :expose => ['Custom-Header'],
       :max_age => 600
     resource '/grids/*',
