@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 
 		request.open('GET', POLL_URL + grid.id, true);
-		request.withCredentials = true;
+		request.setRequestHeader('update');
 		request.setRequestHeader('Content-Type',
 														 'application/json');
 		request.send();
