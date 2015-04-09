@@ -12,8 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
-				var data = JSON.parse(request.responseText).data;
-				updateCells(data);
+				var cellStateData = JSON.parse(request.response).data;
+				debugger;
+				updateCells(cellStateData);
 			}
 		}
 
@@ -24,15 +25,15 @@ document.addEventListener('DOMContentLoaded', function() {
 		request.send();
 	}
 
-	function updateCells(data) {
-		for (var i = 0; i < data.length; i++) {
+	function updateCells(cellStateData) {
+		for (var i = 0; i < cellStateData.length; i++) {
 			var currentCell = document.querySelector("[data-square-index='" 
 																								+ i 
 																								+ "']");
 			var squareStateOfDOM = currentCell.dataset.squareState;
 
-			if (data[i] != squareStateOfDOM) {
-				updateCell(currentCell, data[i]);
+			if (cellStateData[i] != squareStateOfDOM) {
+				updateCell(currentCell, cellStateData[i]);
 			} 
 		}
 	}

@@ -18,7 +18,7 @@ class GridsController < ApplicationController
     squares = @grid.squares
 
     respond_to do |f|
-      f.json { render :json => { data: squares.to_s } }
+      f.json { render :json => { data: squares } }
     end
   end
 
