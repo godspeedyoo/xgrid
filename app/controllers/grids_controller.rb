@@ -24,7 +24,7 @@ class GridsController < ApplicationController
 
   def update
     @grid = Grid.find(params[:id])
-    cell_id = params[:cellIndex].to_i
+    cell_id = params[:cellIndex]
     squares = @grid.squares
     squares[cell_id] = toggle_square(squares[cell_id])
 
