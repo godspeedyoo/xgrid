@@ -8,20 +8,21 @@ window.onload = function() {
 
 	grid.addEventListener("drop", function(e) {
 		e.preventDefault();
-		console.log(e.target.dataset.squareState == 0);
+		getCellId(e);
 		if (e.target.dataset.squareState == 0) {
-			cellId = e.target.dataset.squareIndex;
-			toggleX(cellId, gridId);
+			toggleX(cellId, gridId); // toggle the dropped cell only if it is unmarked
 		}
 	});
 
 	grid.addEventListener('click', function(e) {
 		e.preventDefault();
-		var cellId = e.target.dataset.squareIndex
-		if (cellId == undefined) { return false };
-		cellId = parseInt(cellId);
+		getCellId(e);
 		toggleX(cellId, gridId);
 	});
+
+	function getCellId(e) {
+		return cellId = e.target.dataset.squareIndex 
+	}
 
 	function toggleX(cellId, gridId) {
 		var request = new XMLHttpRequest();
