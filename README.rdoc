@@ -1,28 +1,35 @@
-== README
+== Xgrid
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A coding assignment to demonstrate proficiency with JavaScript without third-party libraries
 
-Things you may want to cover:
+Requirements:
 
-* Ruby version
+* Compatibility with mobile browsers
 
-* System dependencies
+* No third-party JavaScript libraries
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* No need to style UI
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+=== Instructions
+
+1. Given a number suffixed in a URL, make a grid of size n, and render it in HTML. No restrictions on the URL format. e.g., http://127.0.0.1/#/4
+  
+    Here I made the route such that http://localhost:3000/grids/create/n 
+    will take you to a form to create a grid of n size. 
+    You can view the grids created and their dimensions in a simple CRUD style app.
+
+2. Tapping on an empty grid square adds an 'x' to it. Tapping once more removes the 'x'.
+    I added event listeners to the DOM elements, data attributes to store state on the front end
+    and AJAX calls using XMLHttpRequest to send messages to the back end.
+
+3. Make x's draggable from their grid square to any other grid squares within the grid. If an x is drag and dropped to a grid square already containing an x, the drag­and­drop action is cancelled
+    I used the 'draggable' attribute on anything with an 'x'. A listener responds to the drop 
+    event on the target, reading its data attribute to see if it has an 'x' in it already and takes 
+    the appropriate action.
+    
+4. Make the positions of all x’s sync in other browsers/tabs with the same URL from Step 1. No restrictions on the backend platform.
+    I used rails on the back end and serves/receives JSON data. I used a polling technique 
+    to update the other clients, check the array of squareState data (does this index contain an x) 
+    and compare against the front end squareState. If at any point the state of a cell on the grid 
+    does not match the server's, it will update the DOM accordingly each second.
