@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   resources :grids do
   end
 
-  match '*path', to: 'application#cors_preflight_check', via: [:options]
   get 'grids/create/:size' => 'grids#new'
   get 'grids/data/:id' => 'grids#data'
 
