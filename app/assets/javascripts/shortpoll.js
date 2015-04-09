@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
 				var cellStateData = JSON.parse(request.response).data;
-				debugger;
 				updateCells(cellStateData);
 			}
 		}
@@ -55,13 +54,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	// get out of sync. Make them global?
 
 	// markCell() and unmarkCell() functions are duplicated in grid.js - modularize if further functions need to be shared
-	function markCell(cell, squareState) { 
+	function markCell(cell) { 
 		cell.className = cell.className + " x"; // apply the css styling for 'marked' cells
 		cell.dataset.squareState = 1;	// set the state of the square to be 'marked'
 		cell.setAttribute('draggable', true); // allow 'marked' cells to be draggable
 	}
 
-	function unmarkCell(cell, squarestate) {
+	function unmarkCell(cell) {
 		cell.className = 'cell'
 		cell.dataset.squareState = 0;
 		cell.setAttribute('draggable', false);
