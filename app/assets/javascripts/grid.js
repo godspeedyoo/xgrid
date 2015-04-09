@@ -88,7 +88,6 @@ window.onload = function() {
 		request.open('PUT', updateURL + grid.id, true);
 		request.setRequestHeader('Content-Type',
 													   'application/json');
-		request.send();
-		// request.send("cellIndex=" + cellIndex);
+		request.send(JSON.stringify({cellIndex: cellIndex}))
 	};
 }
