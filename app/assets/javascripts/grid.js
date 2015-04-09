@@ -32,8 +32,6 @@ window.onload = function() {
 	// handles both click and drag events for mobile
 	grid.addEventListener("touchend", function(e) {
 		e.preventDefault();
-		console.log(touchMove);
-
 		var	sourceCellIndex = getCellIndex(e.target);
 		var sourceCellState = getCellState(e.target);
 
@@ -44,6 +42,8 @@ window.onload = function() {
 
 		// emulate what would happen on a complete click action by toggling cell
 		if (sourceCellIndex == targetCellIndex && touchMove == false) {
+			if (sourceCellIndex == undefined) { return; } // handle error for click on non cell
+			alert(sourceCellIndex);
 			toggleX(sourceCellIndex);
 			return;
 		}
@@ -57,7 +57,6 @@ window.onload = function() {
 	function getCellState(element) {
 		return element.dataset.squareState;
 	}
-
 
 	function getCellIndex(element) {
 		return element.dataset.squareIndex;
